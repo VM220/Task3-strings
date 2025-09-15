@@ -1,15 +1,33 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ArrayList<Employee> employees = new ArrayList<>();
+        employees.add(new Employee("Alice", 30, 60000));
+        employees.add(new Employee("Bob", 25, 75000));
+        employees.add(new Employee("Charlie", 28, 50000));
+        employees.add(new Employee("David", 35, 90000));
+        Collections.sort(employees, new Comparator<Employee>() {
+            public int compare(Employee e1, Employee e2) {
+                return Double.compare(e2.salary, e1.salary);
+            }
+        });
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println("Employees sorted by Salary (descending):");
+        for (Employee e : employees) {
+            System.out.println(e);
+        }
+        Collections.sort(employees, new Comparator<Employee>() {
+            public int compare(Employee e1, Employee e2) {
+                return e1.name.compareTo(e2.name); // ascending
+            }
+        });
+        System.out.println("\nEmployees sorted by Name (ascending):");
+        for (Employee e : employees) {
+            System.out.println(e);
         }
     }
 }
